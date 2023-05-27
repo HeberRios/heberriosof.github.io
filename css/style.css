@@ -1,0 +1,1367 @@
+/*
+--- 01 Typography
+
+--FONT SIZE SYSTEM (px)
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+
+-Font Weights:
+Default: 400
+Medium: 500
+Semi-Bold: 600
+Bold: 700
+
+--Line Height:
+Default: 1
+Small: 1.05
+Medium: 1.2
+Paragraph default: 1.6
+
+- Letter spacing
+-0.5px
+0.75px
+
+--- 02 Colors
+-Primary: 
+#e67e22
+#51cf66
+
+-Tints:
+#fdf2e9
+#fae5d3
+#f3bf91
+
+-Shades:
+#cf711f
+#45260a
+
+-Accents:
+
+-Grays:
+#888
+#767676
+#6f6f6f (lightest grey allowed on  #fdf2e9)
+#555
+#333
+
+--- 03  Images
+We use unsplash for copyright free images
+
+--- 04 Icons
+An option will be HeroIcons
+
+--- 05 Shadows
+
+0 2.4rem 4.8rem 0 rgba(0, 0, 0, 0.075);
+
+--- 06 Border Radius
+Default: 10px
+Medium: 11px;
+
+--- 07 White Space
+
+--SPACING SYSTEM (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+
+*/
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+*:focus {
+    /* not use ONLY this: */
+    /* but combining more properties */
+    outline: none;
+
+    /* This two properties are an option but we can do it better */
+    /* outline: 4px dotted #e67e22;
+    outline-offset: 8px; */
+
+    /* By using the box-shadow trick, but no using the inset keyword: */
+    box-shadow: 0 0 0 8px rgba(230, 125, 34, 0.5);
+}
+
+html {
+    /* We do not set the root font-size to a fixed value because we can cause some problems for the user experience */
+    /* font-size: 10px; */
+    /* 10px / 16px = 0.625 = 62.5% */
+    /* Percentage of user's browser font-size setting */
+    font-size: 62.5%;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: "Rubik", sans-serif;
+    line-height: 1;
+    font-weight: 400;
+    color: #555;
+    overflow-x: hidden;
+}
+
+strong {
+    font-weight: 500;
+}
+
+/* ----------------------------------------------- */
+/* General Reusable Components */
+/* ----------------------------------------------- */
+
+.container {
+    max-width: 120rem;
+    padding: 0 4.8rem;
+    margin: 0 auto;
+}
+
+.grid {
+    display: grid;
+    column-gap: 6.4rem;
+    row-gap: 9.6rem;
+    /* we do not put align-items: center; here because we want the grid class to be reusable */
+    /* align-items: center; */
+}
+
+/* when we use mor than 1 grid in a section we need to add white space to separate */
+
+.grid:not(:last-child) {
+    margin-bottom: 9.6rem;
+}
+
+.grid--2-cols {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.grid--3-cols {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.grid--4-cols {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.grid--5-cols {
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.grid-center-v {
+    align-items: center;
+}
+
+.heading-primary,
+.heading-secondary,
+.heading-tertiary {
+    font-weight: 700;
+    color: #333;
+    letter-spacing: -0.5px;
+}
+
+.heading-primary {
+    font-size: 5.2rem;
+    line-height: 1.05;
+    margin-bottom: 3.2rem;
+}
+
+.heading-secondary {
+    font-size: 4.4rem;
+    line-height: 1.2;
+    margin-bottom: 9.6rem;
+}
+
+.heading-tertiary {
+    font-size: 3rem;
+    line-height: 1.2;
+    margin-bottom: 3.2rem;
+}
+
+.subheading {
+    display: block;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: #cf711f;
+    text-transform: uppercase;
+    letter-spacing: 0.75px;
+    margin-bottom: 1.6rem;
+}
+
+.btn,
+.btn:link,
+.btn:visited {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: 600;
+    padding: 1.6rem 3.2rem;
+    border-radius: 10px;
+
+    /* Put the transition property in the original "state" */
+    /* transition: background-color 0.3s; */
+    transition: all 0.3s;
+
+    /* only necessary for .btn */
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+}
+
+.btn--full:link,
+.btn--full:visited {
+    background-color: #e67e22;
+    color: #fff;
+}
+
+.btn--full:hover,
+.btn--full:active {
+    background-color: #cf711f;
+}
+
+/* this is a fix for my version */
+.plan-sign-up .btn--full {
+    width: 100%;
+}
+
+.btn--outline:link,
+.btn--outline:visited {
+    background-color: #fff;
+    color: #555;
+}
+
+/* this hover and active pseudo classes need to be below of the link ones to apply for some reason */
+.btn--outline:hover,
+.btn--outline:active {
+    background-color: #fdf2e9;
+    /* with this color the button kinda disappear so we add a white border to make it more visible while hover or active */
+    /* border: 3px solid #fff; */
+    /* but with the border property we get an undesired result to the button size, so we use instead box-shadow */
+
+    /* Trick to add border to the inside with inset keyword */
+    box-shadow: inset 0 0 0 4px #fff;
+}
+
+.btn--form {
+    background-color: #45260a;
+    color: #fdf2e9;
+    align-self: end;
+    padding: 1.2rem;
+}
+
+.btn--form:hover,
+.btn--form:active {
+    /* background-color: #733f11; */
+    background-color: #fdf2e9;
+    color: #555;
+}
+
+.link:link,
+.link:visited {
+    display: inline-block;
+    text-decoration: none;
+    color: #e67e22;
+    border-bottom: 1px solid currentColor;
+    /* the currentColor keyword will use the current value on the color: property */
+    padding-bottom: 2px;
+}
+
+.link:hover,
+.link:active {
+    color: #cf711f;
+    /* border-bottom: none; */
+    border-bottom: 1px solid transparent;
+    /* better to use the transparent keyword to not change de dimensions  */
+}
+
+.list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+    font-size: 1.8rem;
+    line-height: 1.2;
+}
+
+.list-icon {
+    width: 3rem;
+    height: 3rem;
+    color: #e67e22;
+}
+
+/* // Helper classes */
+/* To ensure the application or use of this helper rules we need to use the !important keyword */
+.margin-right-sm {
+    margin-right: 1.6rem !important;
+}
+
+.margin-bottom-md {
+    margin-bottom: 4.8rem !important;
+}
+
+.center-text {
+    text-align: center;
+}
+
+/* ----------------------------------------------- */
+/* Header Section */
+/* ----------------------------------------------- */
+
+.header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fdf2e9;
+    /* we add a fixed height because we want the header to be sticky later */
+    height: 9.6rem;
+    padding: 0 4.8rem;
+}
+
+.logo {
+    height: 2.4rem;
+}
+
+.main-nav-list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 4.8rem;
+}
+
+.main-nav-link:link,
+.main-nav-link:visited {
+    /* we need to set the display property to inline-block 
+    in order for the styles to be applied */
+    display: inline-block;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    font-size: 1.8rem;
+
+    transition: all 0.3s;
+}
+
+.main-nav-link:hover,
+.main-nav-link:active {
+    color: #cf711f;
+}
+
+.main-nav-link.nav-cta:link,
+.main-nav-link.nav-cta:visited {
+    padding: 1.2rem 2.4rem;
+    border-radius: 10px;
+    background-color: #e67e22;
+    color: white;
+}
+
+.main-nav-link.nav-cta:hover,
+.main-nav-link.nav-cta:active {
+    background-color: #cf711f;
+}
+
+/* ----------------------------------------------- */
+/* Mobile Navigation Section */
+/* ----------------------------------------------- */
+
+/* first we style the icons (buttons) 
+and we hide them to only display them in the correct media query */
+.btn-mobile-nav {
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: none;
+}
+
+.icon-mobile-nav {
+    height: 4.8rem;
+    width: 4.8rem;
+    color: #333;
+}
+
+.icon-mobile-nav[name="close-outline"] {
+    display: none;
+}
+
+/* ----------------------------------------------- */
+/* Hero Section */
+/* ----------------------------------------------- */
+
+.section-hero {
+    background-color: #fdf2e9;
+    padding: 4.8rem 0 9.6rem 0;
+}
+
+.hero {
+    /* background-color: red; */
+    max-width: 130rem;
+    margin: 0 auto;
+    padding: 0 3.2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 9.6rem;
+    align-items: center;
+}
+
+.hero-description {
+    font-size: 2rem;
+    line-height: 1.6;
+    margin-bottom: 4.8rem;
+}
+
+/* Customer imgs component */
+.delivered-meals {
+    display: flex;
+    margin-top: 8rem;
+    align-items: center;
+    gap: 1.6rem;
+}
+
+.delivered-imgs {
+    display: flex;
+}
+
+.delivered-imgs img {
+    width: 4.8rem;
+    height: 4.8rem;
+    border-radius: 50%;
+    margin-right: -1.6rem;
+    border: 3px solid #fdf2e9;
+}
+
+.delivered-imgs img:last-child {
+    margin-right: 0;
+}
+
+.delivered-text {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.delivered-text span {
+    color: #cf711f;
+    /* color: #b8651b; */
+    font-weight: 700;
+}
+
+.hero-img {
+    max-width: 100%;
+}
+
+/* ----------------------------------------------- */
+/* Featured in Section */
+/* ----------------------------------------------- */
+
+.section-featured {
+    padding: 4.8rem 0 3.2rem 0;
+}
+
+.heading-featured-in {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.75px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 2.4rem;
+    color: #888;
+}
+
+.logos {
+    display: flex;
+    justify-content: space-around;
+    /* this change is for my version */
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.logos img {
+    height: 3.2rem;
+    filter: brightness(0) opacity(50%);
+}
+
+/* ----------------------------------------------- */
+/* How It Works Section */
+/* ----------------------------------------------- */
+
+.section-how {
+    padding: 9.6rem 0;
+    /* background-color: orangered; */
+    /* background-color: #fdf2e9; */
+}
+
+.step-number {
+    font-size: 8.6rem;
+    font-weight: 600;
+    color: #ccc;
+    margin-bottom: 1.2rem;
+}
+
+.step-description {
+    font-size: 1.8rem;
+    line-height: 1.8;
+}
+
+.step-img-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.step-img-box::before,
+.step-img-box::after {
+    position: absolute;
+    content: "";
+    display: block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}
+
+.step-img-box::before {
+    width: 60%;
+    /* this % height will not work */
+    /* height: 60%; */
+    /* this padding-bottom is a trick to ad percentage height */
+    /* 60% of the parent's width */
+    padding-bottom: 60%;
+    background-color: #fdf2e9;
+    z-index: -2;
+}
+
+.step-img-box::after {
+    width: 45%;
+    padding-bottom: 45%;
+    background-color: #fae5d3;
+    z-index: -1;
+}
+
+.step-img {
+    width: 35%;
+}
+
+/* ----------------------------------------------- */
+/* Meals Section */
+/* ----------------------------------------------- */
+
+.section-meals {
+    padding: 9.6rem 0;
+}
+
+.meal {
+    box-shadow: 0 2.4rem 4.8rem 0 rgba(0, 0, 0, 0.075);
+    border-radius: 11px;
+    overflow: hidden;
+    transition: all 0.4s;
+}
+
+.meal:hover {
+    transform: translateY(-1.2rem);
+    /* cursor: pointer; */
+    box-shadow: 0 3.2rem 6.4rem 0 rgba(0, 0, 0, 0.06);
+}
+
+.meal-img {
+    width: 100%;
+}
+
+.meal-content {
+    padding: 4.8rem;
+    padding-top: 3.2rem;
+}
+
+.meal-tags {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1.2rem;
+}
+
+.tag {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #333;
+    /* border-radius: 2rem; */
+    /* my approach: */
+    /* clip-path: polygon(0 50%, 10% 0, 100% 0, 100% 100%, 10% 100%, 0 50%); */
+    clip-path: polygon(0 50%, 6px 0, 100% 0, 100% 100%, 6px 100%, 0 50%);
+}
+
+.tag--vegetarian {
+    background-color: #51cf66;
+}
+
+.tag--vegan {
+    background-color: #94d82d;
+}
+.tag--paleo {
+    background-color: #ffd43b;
+}
+
+.meal-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 3.2rem;
+}
+
+.meal-attributes {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    list-style: none;
+}
+
+.meal-attribute {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+    font-size: 1.8rem;
+}
+
+.meal-icon {
+    height: 2.4rem;
+    width: 2.4rem;
+    color: #e67e22;
+}
+
+.meal-attribute {
+    font-size: 1.8rem;
+}
+
+.all-recipes {
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+/* ----------------------------------------------- */
+/* Testimonials Section */
+/* ----------------------------------------------- */
+
+.section-testimonials {
+    display: grid;
+    grid-template-columns: 55fr 45fr;
+    align-items: center;
+    /* this align-items: center;  will make the testimonials section to have a
+    unbalanced bottom white space in larger screens so i will try to fix it */
+    background-color: #fdf2e9;
+}
+
+.testimonials-container {
+    padding: 9.6rem;
+    /* this will fix the huge white space we have created with the align-items: center;
+    but will create a problem when we shrink the viewport */
+    /* align-self: start; */
+}
+
+.testimonials {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 4.8rem;
+    column-gap: 8rem;
+}
+
+.testimonial-img {
+    width: 6.4rem;
+    border-radius: 50%;
+    margin-bottom: 1.2rem;
+}
+
+.testimonial-text {
+    font-size: 1.8rem;
+    line-height: 1.8;
+    margin-bottom: 1.6rem;
+}
+
+.testimonial-name {
+    font-size: 1.6rem;
+    color: #6f6f6f;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.6rem;
+    padding: 1.6rem;
+    /* this is part of the fix for the big white space in the section testimonials class */
+    /* align-self: start; */
+}
+
+.gallery-item {
+    overflow: hidden;
+}
+
+.gallery-item img {
+    display: block;
+    width: 100%;
+    transition: all 0.4s;
+}
+
+.gallery-item img:hover {
+    transform: scale(1.1);
+}
+
+/* ----------------------------------------------- */
+/* Pricing and Features Section */
+/* ----------------------------------------------- */
+
+.section-pricing {
+    padding: 9.6rem 0;
+}
+
+.pricing-plan {
+    /* we reduce the width to not have too wide grid cells */
+    width: 75%;
+    padding: 4.8rem;
+    border-radius: 11px;
+
+    /* this is my approach to get the two pricing plans to have automatic spacing */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.pricing-plan-starter {
+    justify-self: end;
+    /* border: 2px solid #fdf2e9; */
+    /* we again use this shadow-box trick to not add space with the border property */
+    /* this is how I fix the border issue */
+    box-shadow: inset 0 0 0 2px #fdf2e9;
+    /* Jonas use different paddings in the starter and complete pricing plans,
+    considering the 2px added by the border */
+    /* this padding:  is from the solution of Jonas; */
+    /* padding: 4.6rem; */
+}
+
+.pricing-plan-complete {
+    background-color: #fdf2e9;
+    /* this padding:  is from the solution of Jonas; */
+    /* padding: 4.8rem; */
+    position: relative;
+    overflow: hidden;
+}
+
+.pricing-plan-complete::after {
+    content: "Best Value";
+    position: absolute;
+    top: 5%;
+    right: -20%;
+    /* Jonas values: */
+    /* top: 6%;
+    right: -18%; */
+    background-color: #ffd43b;
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #333;
+    padding: 0.8rem 8rem;
+    transform: rotate(45deg);
+}
+
+.plan-header {
+    text-align: center;
+    margin-bottom: 4.8rem;
+}
+
+.plan-name {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #cf711f;
+    text-transform: uppercase;
+    letter-spacing: 0.75;
+    margin-bottom: 3.2rem;
+}
+
+.plan-price {
+    font-size: 6.2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1.6rem;
+}
+
+.plan-price span {
+    font-size: 3rem;
+    font-weight: 500;
+    margin-right: 0.8rem;
+}
+
+.plan-text {
+    font-size: 1.6rem;
+    line-height: 1.6;
+    color: #6f6f6f;
+}
+
+.plan-sign-up {
+    margin-top: 4.8rem;
+    text-align: center;
+}
+
+.plan-details {
+    font-size: 1.6rem;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.feature-icon {
+    color: #e67e22;
+    width: 3.2rem;
+    height: 3.2rem;
+    margin-bottom: 3.2rem;
+    padding: 1.6rem;
+    border-radius: 50%;
+    background-color: #fdf2e9;
+}
+
+.feature-title {
+    font-size: 2.4rem;
+    color: #333;
+    font-weight: 700;
+    margin-bottom: 1.6rem;
+}
+
+.feature-text {
+    font-size: 1.8rem;
+    line-height: 1.8;
+}
+
+/* ----------------------------------------------- */
+/* Call To Action Section */
+/* ----------------------------------------------- */
+
+.section-cta {
+    padding: 4.8rem 0 12.8rem 0;
+}
+
+.cta {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    /* background-color: #e67e22; */
+    box-shadow: 0 2.4rem 4.8rem 0 rgba(0, 0, 0, 0.175);
+    border-radius: 11px;
+    background: linear-gradient(to right bottom, #f3bf91, #e67e22);
+    /* f0b27a */
+    overflow: hidden;
+}
+
+.cta-text-box {
+    /* padding: 6.4rem; */
+    padding: 4.8rem 6.4rem 6.4rem 6.4rem;
+    color: #45260a;
+}
+
+.cta-text-box .heading-secondary {
+    /* color: #45260a; */
+    color: inherit;
+    margin-bottom: 3.2rem;
+}
+
+.cta-text {
+    font-size: 1.8rem;
+    line-height: 1.8;
+    margin-bottom: 4.8rem;
+}
+
+.cta-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 3.2rem;
+    row-gap: 2.4rem;
+}
+
+.cta-form label {
+    display: block;
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-bottom: 1.2rem;
+}
+
+.cta-form input,
+.cta-form select {
+    width: 100%;
+    padding: 1.2rem;
+    font-size: 1.8rem;
+    font-family: inherit;
+    color: inherit;
+    border: none;
+    background-color: #fdf2e9;
+    border-radius: 9px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cta-form input::placeholder {
+    color: #6f6f6f;
+}
+
+.cta *:focus {
+    outline: none;
+
+    box-shadow: 0 0 0 8px rgba(253, 242, 233, 0.5);
+}
+
+.cta-img-box {
+    background-image: linear-gradient(
+            to right bottom,
+            rgba(243, 191, 145, 0.3),
+            rgba(230, 125, 34, 0.3)
+        ),
+        url("../img/eating.jpg");
+    /* if we need to go more than one level up un the files 
+    we use :   ../../    */
+    background-size: cover;
+    background-position: center;
+}
+
+/* ----------------------------------------------- */
+/* Footer Section */
+/* ----------------------------------------------- */
+
+.footer {
+    padding: 12.8rem 0;
+    border-top: 1px solid #eee;
+}
+
+/* to fix a simple problem of content overload in address and copyright so we better
+use a custom grid for the footer where the two first columns have 2fr and the rest 1fr */
+
+.grid--footer {
+    grid-template-columns: 1.5fr 1.5fr 1fr 1fr 1fr;
+}
+
+.logo-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-logo {
+    /* as this is a anchor element we need to set its display: property to block
+    in order to use the box model properties as its the margin */
+    display: block;
+    margin-bottom: 3.2rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 2.4rem;
+    list-style: none;
+}
+
+.social-icon {
+    width: 2.4rem;
+    height: 2.4rem;
+}
+
+.copyright {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    color: #767676;
+    /* this align-self: does not work but we can use a trick */
+    /* align-self: flex-end; */
+
+    /* with this margin-top: auto we will position the element with this class 
+    at the end of the container. consider the side of the element you want to separate
+    from the rest of the elements, in this case was the top */
+
+    margin-top: auto;
+}
+
+.footer-heading {
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 4rem;
+}
+
+.contacts {
+    font-style: normal;
+    font-size: 1.6rem;
+    line-height: 1.6;
+}
+
+.address {
+    margin-bottom: 2.4rem;
+}
+
+.footer-nav {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+}
+
+.footer-link:link,
+.footer-link:visited {
+    text-decoration: none;
+    font-size: 1.6rem;
+    color: #767676;
+    transition: all 0.3s;
+}
+
+.footer-link:hover,
+.footer-link:active {
+    color: #555;
+}
+
+/* ----------------------------------------------- */
+/* For screens BELOW 1344px (Smaller desktops)*/
+/* ----------------------------------------------- */
+
+@media (max-width: 84rem) {
+    .hero {
+        max-width: 120rem;
+    }
+
+    .heading-primary {
+        font-size: 4.4rem;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ----------------------------------------------- */
+/* For screens BELOW 1200px (Landscape Tablets)*/
+/* ----------------------------------------------- */
+
+/* 1200px /16px = 75 */
+
+@media (max-width: 75rem) {
+    html {
+        font-size: 9px;
+    }
+
+    /* by reducing the html font-size to 9px we make all the layout smaller, thanks to
+    the rem units we use all along the css properties. But we need adjust manually 
+    some other things like the column and row gaps between grid cells and also the
+    font-size for the secondary and tertiary */
+
+    .grid {
+        column-gap: 4.8rem;
+        row-gap: 6.4rem;
+    }
+
+    .heading-secondary {
+        font-size: 3.6rem;
+    }
+
+    .heading-tertiary {
+        font-size: 2.4rem;
+    }
+
+    .header {
+        padding: 0 4.8rem;
+    }
+
+    .main-nav-list {
+        /* we adjust the gap in the header nav list */
+        gap: 3.2rem;
+    }
+
+    .hero {
+        gap: 4.8rem;
+    }
+    .testimonials-container {
+        /* we decrease the horizontal padding equal to the container padding  (4.8rem) */
+        padding: 9.6rem 4.8rem;
+        /* align-self: center; */
+    }
+}
+
+/* ----------------------------------------------- */
+/* For screens BELOW 960px (Tablets)*/
+/* --------------------------------------------- */
+
+/* 960px /16px = 60 */
+@media (max-width: 60rem) {
+    html {
+        /* 8px / 16px = 0.5 = 50% */
+        font-size: 50%;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        padding: 0 8rem;
+    }
+
+    /* inline elements can be centered with text-align: center; */
+    /* since all the elements inside the .hero-text-box are inline they will center */
+    .hero-text-box,
+    .hero-img-box {
+        text-align: center;
+    }
+
+    .hero-img {
+        /* this image is still an inline element */
+        width: 60%;
+    }
+
+    .delivered-meals {
+        justify-content: center;
+    }
+
+    .logos img {
+        height: 2.4rem;
+    }
+
+    /* this commented properties are not necessary IMO */
+
+    .step-number {
+        /* font-size: 7.4rem; */
+    }
+
+    .meal-content {
+        padding: 3.2rem;
+    }
+
+    .section-testimonials {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery {
+        /* grid-template-columns: repeat(6, 1fr); */
+        /* I like this 4 columns more than 6 */
+        grid-template-columns: repeat(4, 1fr);
+        padding: 1.6rem 4.8rem 4.8rem 4.8rem;
+    }
+
+    /* this is an adjustment for my version: */
+    .plan-sign-up .btn--full {
+        padding: 1.6rem 2.4rem;
+        /* font-size: 1.8rem; */
+    }
+
+    .cta {
+        /* 3/5 = 60%; 2/5 = 40% */
+        grid-template-columns: 3fr 2fr;
+    }
+
+    .cta-form {
+        grid-template-columns: 1fr;
+    }
+
+    .btn--form {
+        margin-top: 1.8rem;
+    }
+
+    /* this is an adjustment for my version: */
+    .pricing-plan {
+        width: 85%;
+    }
+
+    /* ----------------------------------------------- */
+    /* Mobile Navigation */
+    /* ----------------------------------------------- */
+
+    /* then when this media query its applied we style the container of the link list
+    and also the link list itself to be centered and change its direction to column */
+
+    .btn-mobile-nav {
+        display: block;
+    }
+
+    .main-nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 0.9);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        transition: all 0.5s ease-in;
+
+        /* Hide navigation while is not used */
+        /* This property allows no transitions: */
+
+        /* display: none; */
+
+        /* another option is opacity */
+        /* but its not enough, we need to do more steps than that 
+        changing the opacity will be the first step*/
+
+        /* 1) Hide it visually */
+        opacity: 0;
+
+        /* 2) Make it unaccessible to mouse and keyboard */
+        pointer-events: none;
+
+        /* 3) Hide it from screen readers */
+        visibility: hidden;
+
+        /* Another thing, to have an animation from left to right of
+        the nav menu being displayed we translate it to the left
+        but also setting the body and an html overflow-x to hidden */
+
+        transform: translateX(100%);
+    }
+
+    /* When we open the nav we return the values to its original state */
+    .nav-open .main-nav {
+        opacity: 1;
+        pointer-events: auto;
+        visibility: visible;
+        transform: translateX(0);
+    }
+
+    /* Also when the nav is open we display the close icon and hide the menu icon */
+    .nav-open .icon-mobile-nav[name="close-outline"] {
+        display: block;
+    }
+
+    .nav-open .icon-mobile-nav[name="menu-outline"] {
+        display: none;
+    }
+
+    .main-nav-list {
+        flex-direction: column;
+        gap: 4.8rem;
+    }
+
+    .main-nav-link:link,
+    .main-nav-link:visited {
+        font-size: 3rem;
+    }
+}
+
+/* ----------------------------------------------- */
+/* For screens BELOW 760px (Smaller tablets)*/
+/* --------------------------------------------- */
+
+/* 760px /16px = 47.75 = 48  */
+/* 16 * 48 = 768px */
+
+@media (max-width: 48rem) {
+    /* because of the reduce space we need to change the 3 and 4 grid columns 
+    components we just select them and change the number of columns to two */
+
+    .grid--3-cols,
+    .grid--4-cols {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .diets {
+        justify-self: center;
+        grid-column: 1/-1;
+    }
+
+    .heading-secondary {
+        margin-bottom: 4.8rem;
+    }
+
+    .pricing-plan {
+        width: 100%;
+    }
+
+    /* Adjustment for my version */
+    .header,
+    .gallery,
+    .testimonials-container,
+    .container {
+        padding-left: 3.2rem;
+        padding-right: 3.2rem;
+    }
+
+    .grid--footer {
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    .logo-col,
+    .address-col {
+        grid-column: span 3;
+    }
+
+    .nav-col {
+        grid-row: 1;
+        grid-column: span 2;
+        margin-bottom: 3.2rem;
+    }
+}
+
+/* ----------------------------------------------- */
+/* For screens BELOW 560px (Phones)*/
+/* --------------------------------------------- */
+
+/* 560px /16px = 35 */
+
+@media (max-width: 35rem) {
+    .grid {
+        row-gap: 4.8rem;
+    }
+
+    .grid--2-cols,
+    .grid--3-cols,
+    .grid--4-cols {
+        grid-template-columns: 1fr;
+    }
+
+    .btn,
+    .btn:link,
+    .btn:visited {
+        padding: 2.4rem 1.6rem;
+    }
+
+    .section-hero {
+        padding: 2.4rem 0 6.4rem 0;
+    }
+
+    .hero {
+        padding: 0 3.2rem;
+    }
+
+    .hero-img {
+        width: 90%;
+    }
+
+    .logos img {
+        height: 2rem;
+    }
+
+    .step-img-box:nth-child(2) {
+        grid-row: 1;
+    }
+
+    .step-img-box:nth-child(6) {
+        grid-row: 5;
+    }
+
+    .step-img-box {
+        transform: translateY(3.2rem);
+    }
+
+    .testimonials {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery {
+        gap: 1.2rem;
+        padding: 1.2rem;
+    }
+
+    .cta {
+        grid-template-columns: 1fr;
+    }
+
+    .cta-text-box {
+        padding: 3.2rem;
+    }
+
+    /* we need to add fixed height because this element has no content */
+    .cta-img-box {
+        height: 32rem;
+        grid-row: 1;
+    }
+}
+
+/* --FONT SIZE SYSTEM (px)
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+
+--SPACING SYSTEM (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128 */
+
+/* rule of thumb for media queries:
+a media quire should work over a range of 200 or 300px */
