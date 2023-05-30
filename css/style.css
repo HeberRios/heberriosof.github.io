@@ -71,23 +71,12 @@ Medium: 11px;
 }
 
 *:focus {
-    /* not use ONLY this: */
-    /* but combining more properties */
     outline: none;
 
-    /* This two properties are an option but we can do it better */
-    /* outline: 4px dotted #e67e22;
-    outline-offset: 8px; */
-
-    /* By using the box-shadow trick, but no using the inset keyword: */
     box-shadow: 0 0 0 8px rgba(230, 125, 34, 0.5);
 }
 
 html {
-    /* We do not set the root font-size to a fixed value because we can cause some problems for the user experience */
-    /* font-size: 10px; */
-    /* 10px / 16px = 0.625 = 62.5% */
-    /* Percentage of user's browser font-size setting */
     font-size: 62.5%;
     overflow-x: hidden;
 }
@@ -118,11 +107,7 @@ strong {
     display: grid;
     column-gap: 6.4rem;
     row-gap: 9.6rem;
-    /* we do not put align-items: center; here because we want the grid class to be reusable */
-    /* align-items: center; */
 }
-
-/* when we use mor than 1 grid in a section we need to add white space to separate */
 
 .grid:not(:last-child) {
     margin-bottom: 9.6rem;
@@ -194,11 +179,8 @@ strong {
     padding: 1.6rem 3.2rem;
     border-radius: 10px;
 
-    /* Put the transition property in the original "state" */
-    /* transition: background-color 0.3s; */
     transition: all 0.3s;
 
-    /* only necessary for .btn */
     cursor: pointer;
     border: none;
     font-family: inherit;
@@ -215,7 +197,6 @@ strong {
     background-color: #cf711f;
 }
 
-/* this is a fix for my version */
 .plan-sign-up .btn--full {
     width: 100%;
 }
@@ -226,15 +207,10 @@ strong {
     color: #555;
 }
 
-/* this hover and active pseudo classes need to be below of the link ones to apply for some reason */
 .btn--outline:hover,
 .btn--outline:active {
     background-color: #fdf2e9;
-    /* with this color the button kinda disappear so we add a white border to make it more visible while hover or active */
-    /* border: 3px solid #fff; */
-    /* but with the border property we get an undesired result to the button size, so we use instead box-shadow */
 
-    /* Trick to add border to the inside with inset keyword */
     box-shadow: inset 0 0 0 4px #fff;
 }
 
@@ -247,7 +223,6 @@ strong {
 
 .btn--form:hover,
 .btn--form:active {
-    /* background-color: #733f11; */
     background-color: #fdf2e9;
     color: #555;
 }
@@ -258,16 +233,13 @@ strong {
     text-decoration: none;
     color: #e67e22;
     border-bottom: 1px solid currentColor;
-    /* the currentColor keyword will use the current value on the color: property */
     padding-bottom: 2px;
 }
 
 .link:hover,
 .link:active {
     color: #cf711f;
-    /* border-bottom: none; */
     border-bottom: 1px solid transparent;
-    /* better to use the transparent keyword to not change de dimensions  */
 }
 
 .list {
@@ -292,7 +264,6 @@ strong {
 }
 
 /* // Helper classes */
-/* To ensure the application or use of this helper rules we need to use the !important keyword */
 .margin-right-sm {
     margin-right: 1.6rem !important;
 }
@@ -315,7 +286,6 @@ strong {
     justify-content: space-between;
     align-items: center;
     background-color: #fdf2e9;
-    /* we add a fixed height because we want the header to be sticky later */
     height: 9.6rem;
     padding: 0 4.8rem;
 }
@@ -333,8 +303,6 @@ strong {
 
 .main-nav-link:link,
 .main-nav-link:visited {
-    /* we need to set the display property to inline-block 
-    in order for the styles to be applied */
     display: inline-block;
     text-decoration: none;
     color: #333;
@@ -366,8 +334,6 @@ strong {
 /* Mobile Navigation Section */
 /* ----------------------------------------------- */
 
-/* first we style the icons (buttons) 
-and we hide them to only display them in the correct media query */
 .btn-mobile-nav {
     border: none;
     background: none;
@@ -386,6 +352,27 @@ and we hide them to only display them in the correct media query */
 }
 
 /* ----------------------------------------------- */
+/* Sticky Navigation*/
+/* ----------------------------------------------- */
+
+.sticky .header {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 8rem;
+    padding-top: 0;
+    padding-bottom: 0;
+    background-color: rgba(255, 255, 255, 0.9);
+    z-index: 999;
+    box-shadow: 0 1.2rem 3.2rem rgba(0, 0, 0, 0.06);
+}
+
+.sticky .section-hero {
+    margin-top: 9.6rem;
+}
+
+/* ----------------------------------------------- */
 /* Hero Section */
 /* ----------------------------------------------- */
 
@@ -395,7 +382,6 @@ and we hide them to only display them in the correct media query */
 }
 
 .hero {
-    /* background-color: red; */
     max-width: 130rem;
     margin: 0 auto;
     padding: 0 3.2rem;
@@ -442,7 +428,6 @@ and we hide them to only display them in the correct media query */
 
 .delivered-text span {
     color: #cf711f;
-    /* color: #b8651b; */
     font-weight: 700;
 }
 
@@ -471,7 +456,6 @@ and we hide them to only display them in the correct media query */
 .logos {
     display: flex;
     justify-content: space-around;
-    /* this change is for my version */
     flex-wrap: wrap;
     gap: 2rem;
 }
@@ -487,8 +471,6 @@ and we hide them to only display them in the correct media query */
 
 .section-how {
     padding: 9.6rem 0;
-    /* background-color: orangered; */
-    /* background-color: #fdf2e9; */
 }
 
 .step-number {
@@ -523,10 +505,7 @@ and we hide them to only display them in the correct media query */
 
 .step-img-box::before {
     width: 60%;
-    /* this % height will not work */
-    /* height: 60%; */
-    /* this padding-bottom is a trick to ad percentage height */
-    /* 60% of the parent's width */
+
     padding-bottom: 60%;
     background-color: #fdf2e9;
     z-index: -2;
@@ -560,7 +539,6 @@ and we hide them to only display them in the correct media query */
 
 .meal:hover {
     transform: translateY(-1.2rem);
-    /* cursor: pointer; */
     box-shadow: 0 3.2rem 6.4rem 0 rgba(0, 0, 0, 0.06);
 }
 
@@ -586,9 +564,7 @@ and we hide them to only display them in the correct media query */
     font-weight: 600;
     text-transform: uppercase;
     color: #333;
-    /* border-radius: 2rem; */
-    /* my approach: */
-    /* clip-path: polygon(0 50%, 10% 0, 100% 0, 100% 100%, 10% 100%, 0 50%); */
+
     clip-path: polygon(0 50%, 6px 0, 100% 0, 100% 100%, 6px 100%, 0 50%);
 }
 
@@ -647,16 +623,12 @@ and we hide them to only display them in the correct media query */
     display: grid;
     grid-template-columns: 55fr 45fr;
     align-items: center;
-    /* this align-items: center;  will make the testimonials section to have a
-    unbalanced bottom white space in larger screens so i will try to fix it */
+
     background-color: #fdf2e9;
 }
 
 .testimonials-container {
     padding: 9.6rem;
-    /* this will fix the huge white space we have created with the align-items: center;
-    but will create a problem when we shrink the viewport */
-    /* align-self: start; */
 }
 
 .testimonials {
@@ -688,8 +660,6 @@ and we hide them to only display them in the correct media query */
     grid-template-columns: repeat(3, 1fr);
     gap: 1.6rem;
     padding: 1.6rem;
-    /* this is part of the fix for the big white space in the section testimonials class */
-    /* align-self: start; */
 }
 
 .gallery-item {
@@ -715,12 +685,10 @@ and we hide them to only display them in the correct media query */
 }
 
 .pricing-plan {
-    /* we reduce the width to not have too wide grid cells */
     width: 75%;
     padding: 4.8rem;
     border-radius: 11px;
 
-    /* this is my approach to get the two pricing plans to have automatic spacing */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -728,20 +696,12 @@ and we hide them to only display them in the correct media query */
 
 .pricing-plan-starter {
     justify-self: end;
-    /* border: 2px solid #fdf2e9; */
-    /* we again use this shadow-box trick to not add space with the border property */
-    /* this is how I fix the border issue */
+
     box-shadow: inset 0 0 0 2px #fdf2e9;
-    /* Jonas use different paddings in the starter and complete pricing plans,
-    considering the 2px added by the border */
-    /* this padding:  is from the solution of Jonas; */
-    /* padding: 4.6rem; */
 }
 
 .pricing-plan-complete {
     background-color: #fdf2e9;
-    /* this padding:  is from the solution of Jonas; */
-    /* padding: 4.8rem; */
     position: relative;
     overflow: hidden;
 }
@@ -751,9 +711,7 @@ and we hide them to only display them in the correct media query */
     position: absolute;
     top: 5%;
     right: -20%;
-    /* Jonas values: */
-    /* top: 6%;
-    right: -18%; */
+
     background-color: #ffd43b;
     font-size: 1.4rem;
     font-weight: 700;
@@ -840,22 +798,18 @@ and we hide them to only display them in the correct media query */
 .cta {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    /* background-color: #e67e22; */
     box-shadow: 0 2.4rem 4.8rem 0 rgba(0, 0, 0, 0.175);
     border-radius: 11px;
     background: linear-gradient(to right bottom, #f3bf91, #e67e22);
-    /* f0b27a */
     overflow: hidden;
 }
 
 .cta-text-box {
-    /* padding: 6.4rem; */
     padding: 4.8rem 6.4rem 6.4rem 6.4rem;
     color: #45260a;
 }
 
 .cta-text-box .heading-secondary {
-    /* color: #45260a; */
     color: inherit;
     margin-bottom: 3.2rem;
 }
@@ -910,8 +864,7 @@ and we hide them to only display them in the correct media query */
             rgba(230, 125, 34, 0.3)
         ),
         url("../img/eating.jpg");
-    /* if we need to go more than one level up un the files 
-    we use :   ../../    */
+
     background-size: cover;
     background-position: center;
 }
@@ -925,9 +878,6 @@ and we hide them to only display them in the correct media query */
     border-top: 1px solid #eee;
 }
 
-/* to fix a simple problem of content overload in address and copyright so we better
-use a custom grid for the footer where the two first columns have 2fr and the rest 1fr */
-
 .grid--footer {
     grid-template-columns: 1.5fr 1.5fr 1fr 1fr 1fr;
 }
@@ -938,8 +888,6 @@ use a custom grid for the footer where the two first columns have 2fr and the re
 }
 
 .footer-logo {
-    /* as this is a anchor element we need to set its display: property to block
-    in order to use the box model properties as its the margin */
     display: block;
     margin-bottom: 3.2rem;
 }
@@ -959,12 +907,6 @@ use a custom grid for the footer where the two first columns have 2fr and the re
     font-size: 1.4rem;
     line-height: 1.6;
     color: #767676;
-    /* this align-self: does not work but we can use a trick */
-    /* align-self: flex-end; */
-
-    /* with this margin-top: auto we will position the element with this class 
-    at the end of the container. consider the side of the element you want to separate
-    from the rest of the elements, in this case was the top */
 
     margin-top: auto;
 }
@@ -1034,11 +976,6 @@ use a custom grid for the footer where the two first columns have 2fr and the re
         font-size: 9px;
     }
 
-    /* by reducing the html font-size to 9px we make all the layout smaller, thanks to
-    the rem units we use all along the css properties. But we need adjust manually 
-    some other things like the column and row gaps between grid cells and also the
-    font-size for the secondary and tertiary */
-
     .grid {
         column-gap: 4.8rem;
         row-gap: 6.4rem;
@@ -1057,7 +994,6 @@ use a custom grid for the footer where the two first columns have 2fr and the re
     }
 
     .main-nav-list {
-        /* we adjust the gap in the header nav list */
         gap: 3.2rem;
     }
 
@@ -1065,9 +1001,7 @@ use a custom grid for the footer where the two first columns have 2fr and the re
         gap: 4.8rem;
     }
     .testimonials-container {
-        /* we decrease the horizontal padding equal to the container padding  (4.8rem) */
         padding: 9.6rem 4.8rem;
-        /* align-self: center; */
     }
 }
 
@@ -1087,15 +1021,12 @@ use a custom grid for the footer where the two first columns have 2fr and the re
         padding: 0 8rem;
     }
 
-    /* inline elements can be centered with text-align: center; */
-    /* since all the elements inside the .hero-text-box are inline they will center */
     .hero-text-box,
     .hero-img-box {
         text-align: center;
     }
 
     .hero-img {
-        /* this image is still an inline element */
         width: 60%;
     }
 
@@ -1107,12 +1038,6 @@ use a custom grid for the footer where the two first columns have 2fr and the re
         height: 2.4rem;
     }
 
-    /* this commented properties are not necessary IMO */
-
-    .step-number {
-        /* font-size: 7.4rem; */
-    }
-
     .meal-content {
         padding: 3.2rem;
     }
@@ -1122,20 +1047,15 @@ use a custom grid for the footer where the two first columns have 2fr and the re
     }
 
     .gallery {
-        /* grid-template-columns: repeat(6, 1fr); */
-        /* I like this 4 columns more than 6 */
         grid-template-columns: repeat(4, 1fr);
         padding: 1.6rem 4.8rem 4.8rem 4.8rem;
     }
 
-    /* this is an adjustment for my version: */
     .plan-sign-up .btn--full {
         padding: 1.6rem 2.4rem;
-        /* font-size: 1.8rem; */
     }
 
     .cta {
-        /* 3/5 = 60%; 2/5 = 40% */
         grid-template-columns: 3fr 2fr;
     }
 
@@ -1147,7 +1067,6 @@ use a custom grid for the footer where the two first columns have 2fr and the re
         margin-top: 1.8rem;
     }
 
-    /* this is an adjustment for my version: */
     .pricing-plan {
         width: 85%;
     }
@@ -1156,33 +1075,24 @@ use a custom grid for the footer where the two first columns have 2fr and the re
     /* Mobile Navigation */
     /* ----------------------------------------------- */
 
-    /* then when this media query its applied we style the container of the link list
-    and also the link list itself to be centered and change its direction to column */
-
     .btn-mobile-nav {
         display: block;
+        z-index: 9999;
     }
 
     .main-nav {
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: rgba(255, 255, 255, 0.9);
+        background-color: rgba(255, 255, 255, 0.8);
+        -webkit-backdrop-filter: blur(2px);
+        backdrop-filter: blur(2px);
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100vh;
         transition: all 0.5s ease-in;
-
-        /* Hide navigation while is not used */
-        /* This property allows no transitions: */
-
-        /* display: none; */
-
-        /* another option is opacity */
-        /* but its not enough, we need to do more steps than that 
-        changing the opacity will be the first step*/
 
         /* 1) Hide it visually */
         opacity: 0;
@@ -1193,14 +1103,9 @@ use a custom grid for the footer where the two first columns have 2fr and the re
         /* 3) Hide it from screen readers */
         visibility: hidden;
 
-        /* Another thing, to have an animation from left to right of
-        the nav menu being displayed we translate it to the left
-        but also setting the body and an html overflow-x to hidden */
-
         transform: translateX(100%);
     }
 
-    /* When we open the nav we return the values to its original state */
     .nav-open .main-nav {
         opacity: 1;
         pointer-events: auto;
@@ -1208,7 +1113,6 @@ use a custom grid for the footer where the two first columns have 2fr and the re
         transform: translateX(0);
     }
 
-    /* Also when the nav is open we display the close icon and hide the menu icon */
     .nav-open .icon-mobile-nav[name="close-outline"] {
         display: block;
     }
@@ -1236,9 +1140,6 @@ use a custom grid for the footer where the two first columns have 2fr and the re
 /* 16 * 48 = 768px */
 
 @media (max-width: 48rem) {
-    /* because of the reduce space we need to change the 3 and 4 grid columns 
-    components we just select them and change the number of columns to two */
-
     .grid--3-cols,
     .grid--4-cols {
         grid-template-columns: repeat(2, 1fr);
@@ -1257,7 +1158,6 @@ use a custom grid for the footer where the two first columns have 2fr and the re
         width: 100%;
     }
 
-    /* Adjustment for my version */
     .header,
     .gallery,
     .testimonials-container,
@@ -1350,7 +1250,6 @@ use a custom grid for the footer where the two first columns have 2fr and the re
         padding: 3.2rem;
     }
 
-    /* we need to add fixed height because this element has no content */
     .cta-img-box {
         height: 32rem;
         grid-row: 1;
@@ -1363,5 +1262,55 @@ use a custom grid for the footer where the two first columns have 2fr and the re
 --SPACING SYSTEM (px)
 2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128 */
 
-/* rule of thumb for media queries:
-a media quire should work over a range of 200 or 300px */
+/* ----------------------------------------------- */
+/* To fix the flexbox gap property on safari */
+/* --------------------------------------------- */
+
+.no-flexbox-gap .main-nav-list li:not(:last-child) {
+    margin-right: 4.8rem;
+}
+
+.no-flexbox-gap .list-item:not(:last-child) {
+    margin-bottom: 1.6rem;
+}
+
+.no-flexbox-gap .list-icon:not(:last-child) {
+    margin-right: 1.6rem;
+}
+
+.no-flexbox-gap .delivered-faces {
+    margin-right: 1.6rem;
+}
+
+.no-flexbox-gap .meal-attribute:not(:last-child) {
+    margin-bottom: 2rem;
+}
+
+.no-flexbox-gap .meal-icon {
+    margin-right: 1.6rem;
+}
+
+.no-flexbox-gap .footer-row div:not(:last-child) {
+    margin-right: 6.4rem;
+}
+
+.no-flexbox-gap .social-links li:not(:last-child) {
+    margin-right: 2.4rem;
+}
+
+.no-flexbox-gap .footer-nav li:not(:last-child) {
+    margin-bottom: 2.4rem;
+}
+
+@media (max-width: 75em) {
+    .no-flexbox-gap .main-nav-list li:not(:last-child) {
+        margin-right: 3.2rem;
+    }
+}
+
+@media (max-width: 59em) {
+    .no-flexbox-gap .main-nav-list li:not(:last-child) {
+        margin-right: 0;
+        margin-bottom: 4.8rem;
+    }
+}
